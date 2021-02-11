@@ -3,6 +3,7 @@ const Web3 = require('web3');
 const Provider = Web3.providers.HttpProvider;
 const config = require('./config.json');
 const web3 = new Web3(new Provider(config.node.provider));
+
 const fetch = require("node-fetch");
 
 // Sleeper constants
@@ -125,11 +126,11 @@ async function ListenXVS(block, price, txAmount) {
                             receiver = `#${getKeyByValue(known, item[1])}`
                         } else {receiver = `unknown wallet`}
                         msg = `${alert} ${amount} transferred from ${sender} to ${receiver}\n\nTx: https://bscscan.com/tx/${item[2]}`                        
-                        
+                        /*
                         client.post('statuses/update', { status: msg }).then(result => {
                         console.log('You successfully tweeted this : "' + result.text + '"');
-                        }).catch(console.error);
-                        // console.log(msg);
+                        }).catch(console.error);*/
+                        console.log(msg);
                         hash.push(item[2]);
                     }
                     
@@ -165,11 +166,11 @@ async function ListenTVL(time) {
         tvl = tvl + vstake
         msg = `${getWhaleLevel('tvl')} Total Value Locked: ${tvl.toLocaleString('en-US', {maximumFractionDigits:0})} USD\n#XVS #Venus #DeFi #BSC`
 
-        
+        /*
         client.post('statuses/update', { status: msg }).then(result => {
         console.log('You successfully tweeted this : "' + result.text + '"');
-        }).catch(console.error);
-        // console.log(msg);
+        }).catch(console.error);*/
+        console.log(msg);
         ListenTVL(31000000) 
     } catch (err) {
         console.log(`Restarting tvl=${err}`);
